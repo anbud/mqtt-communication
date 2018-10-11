@@ -1,0 +1,15 @@
+{
+  "name": "rpi-stats",
+  "version": "0.0.1",
+  "description": "MQTT listener for RPi stats",
+  "main": "mqtt_listener.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "got": "^9.2.2",
+    "mqtt": "^2.17.0"
+  }
+}
