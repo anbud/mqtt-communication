@@ -7,6 +7,11 @@ const sensorId = 2
 
 const events = ['usb_inserted', 'usb_removed', 'cpu_peak', 'memmory_peak', 'cpu_regular', 'memmory_regular']
 
+client.on('connect', function () {
+    console.log('[INFO] Connected')
+    events.forEach(i => client.subscribe(i))
+})
+
 got('users', {
     baseUrl: 'http://localhost:4000',
     headers: {
@@ -18,11 +23,8 @@ got('users', {
     },
     form: true
 }).then(data => {
-    client.on('connect', function () {
-	    console.log('[INFO] Connected')
- 	    events.forEach(i => client.subscribe(i))
-    })
-
+    data.body = JSON.parse(data.body)
+    
     client.on('message', function (topic, message) {
 	    console.log(`[INFO] Message arrived, ${topic}, ${message}`)
 	    let payload = {
